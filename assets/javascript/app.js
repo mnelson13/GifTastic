@@ -1,8 +1,8 @@
 $(document).ready(function() {
 
-var animals = ["cats", "dogs", "birds"];
+var animals = ["cats", "dogs", "birds", "bunnies", "monkeys"];
 
-
+$("#addButton").hide();
 
 function displayAnimalGifs() {
     $("#gifs-view").empty();
@@ -28,13 +28,14 @@ function displayAnimalGifs() {
                 animalImage.attr("data-still", result.images.fixed_height_still.url);
                 animalImage.attr("data-animate", result.images.fixed_height.url);
                 animalImage.attr("data-state", "still");
-                animalImage.attr("class", "gif");
+                animalImage.attr("class", "gif img-thumbnail");
 
                 animalDiv.append(p);
                 animalDiv.append(animalImage);
                 animalDiv.attr("class", "gifDiv");
 
                 $("#gifs-view").prepend(animalDiv);
+                $("#addButton").show();
 
             }
         );
@@ -64,7 +65,8 @@ function renderButtons() {
 
     for (i in animals) {
         var a = $("<button>");
-        a.addClass("animal");
+        a.addClass("btn btn-primary animal");
+        a.attr("type", "button");
         a.attr("data-name", animals[i]);
         a.text(animals[i]);
         $("#buttons-view").append(a);
