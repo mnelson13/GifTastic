@@ -6,6 +6,7 @@ var offset = 0;
 
 $("#addButton").hide();
 
+//displays 10 gifs when an animal button is clicked
 function displayAnimalGifs() {
     $("#gifs-view").empty();
     animal = $(this).attr("data-name");
@@ -48,7 +49,7 @@ function displayAnimalGifs() {
 };
 
 
-
+//adds an additional 10 gifs to the page when the add more button is clicked
 $("#addMore").on("click", function() {
     var queryURL2 = "https://api.giphy.com/v1/gifs/search?q=" + animal + "&api_key=lykChudJ7T8d9ubNOq98NPu4pJSOy136&limit=10&offset=" + offset + "";
 
@@ -88,7 +89,7 @@ $("#addMore").on("click", function() {
 
 })
 
-
+//animates the still gifs when they are clicked, or pauses animated gifs
 $(document.body).on("click", ".gif", function() {
     var state = $(this).attr("data-state");
 
@@ -103,6 +104,7 @@ $(document.body).on("click", ".gif", function() {
 });
 
 
+//renders the animal buttons on the page
 function renderButtons() {
     $("#buttons-view").empty();
 
@@ -116,7 +118,7 @@ function renderButtons() {
     }
 };
 
-
+//adds animal from input form onto the animals array and renders the new buttons
 $("#add-animal").on("click", function(event) {
     event.preventDefault();
 
@@ -126,8 +128,11 @@ $("#add-animal").on("click", function(event) {
     renderButtons();
 });
 
+//runs the function to display the first 10 gifs when an animal button is clicked
 $(document).on("click", ".animal", displayAnimalGifs);
 
+
+//renders the buttons on page load
 renderButtons();
 
 });
